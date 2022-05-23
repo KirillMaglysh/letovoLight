@@ -1,10 +1,11 @@
 from django.http import JsonResponse
 
-from tstdb.light_processor import on_group, activate
+from tstdb.light_processor import on_group, activate, turn_all_onf
 
 functions = dict()
 functions['group'] = on_group
 functions['start'] = activate
+functions['effect1'] = turn_all_onf
 
 
 def process_click(request):

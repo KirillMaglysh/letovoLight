@@ -25,11 +25,11 @@ ZOOM = 12
 SHUTTER = 13
 
 sender = sacn.sACNsender(fps=60)
-sender.start()
 sender.activate_output(1)
 sender[1].multicast = True
+sender.start()
 
-isSendingOn = 0
+isSendingOn = 1
 isTurnedOn = 0
 isSceneGenerating = 0
 isBlinking = 0
@@ -212,7 +212,7 @@ sendingData = [0, ] * 513
 
 
 def update_dmx():
-    isManualFlush = True
+    isManualFlush = False
     while True:
         time.sleep(0.02)
         if not isSendingOn:
@@ -251,8 +251,9 @@ def update_dmx():
         sender[1].dmx_data = sendingData[1:513]
 
 
-def turn_all_onf(ok):
-    if ok:
+def turn_all_onf():
+    if 1:
+        print("in turn_all_onf")
         for nw in scene:
             nw.isOn = True
             if nw.data[TYPE] == "spot":
